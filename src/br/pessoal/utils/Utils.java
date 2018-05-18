@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class Utils {
 		// File("/Users/mkyong/Desktop/logo.jpg"));
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics g = image.getGraphics();
-		g.setFont(new Font("SansSerif", Font.BOLD, 24));
+		g.setFont(new Font("SansSerif", Font.BOLD, 14));
 
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -103,6 +104,39 @@ public class Utils {
 		} catch (IOException ex) {
 			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+	
+	public String[] lerArquivos(String arquivo) {
+
+		File dir = new File(arquivo);
+		int index = 0;
+		StringBuilder conteudo = new StringBuilder();
+		String[] arquivos = new String[dir.listFiles().length];
+
+		try {
+			for (File file : dir.listFiles()) {				
+				FileReader arq = new FileReader(file.getPath());
+				BufferedReader lerArq = new BufferedReader(arq);
+
+				String linha = lerArq.readLine();
+				while (linha != null) {
+					conteudo.append(linha + "\n");
+
+					linha = lerArq.readLine();
+				}
+				lerArq.close();
+				arquivos[index] = conteudo.toString();
+				conteudo.delete(0, conteudo.length());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return arquivos;
 	}
 
 	public boolean inputIsNumber(String input){

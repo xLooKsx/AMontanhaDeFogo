@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import br.pessoal.utils.Utils;
 
-public class OpcaoAjuda {
+public class Sobre {
 
 	private Scanner scanner = new Scanner(System.in);
 	
@@ -14,9 +14,9 @@ public class OpcaoAjuda {
 	private String opcaoEscolhidaAUX;
 	private boolean	escolhaFeita = false;
 	
-	public void telaAjuda() {
+	public void telaSobre() {
 		
-		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.ajuda"));
+		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.sobre"));
 		utils.transicao(10);
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
@@ -36,8 +36,11 @@ public class OpcaoAjuda {
 					break;
 
 				case 2:
-					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.sair.mensagem"));					
-					escolhaFeita = true;
+					utils.transicao(30);
+					utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.final"));
+					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.sair.mensagem"));
+					utils.transicao(10);
+					System.exit(0);
 					break;
 
 

@@ -1,0 +1,21 @@
+						EQUIPAMENTO E POÇÕES
+
+			Você começará a sua aventura com um mínimo essencial de equipamento, mas poderá incluir
+			outros itens durante a sua viagem. Você está armado com uma espada e vestido com uma armadura
+			de couro. Você tem ama mochila (ou algo similar) nas costas para levar as suas Provisões e
+			quaisquer tesouros que por acaso encontre no percurso. Você pode também carregar uma lanterna
+			para iluminar o seu caminho.
+			Além disso, você poderá levar uma garrafa de uma poção mágica que o ajudará na sua busca. Você
+			pode escolher levar uma garrafa de qualquer uma das seguintes poções:
+			Uma Poção da Habilidade - recupera seus pontos de HABILIDADE
+			Uma Poção da Força – recupera seus pontos de ENERGIA
+			Uma Poção da Fortuna - recupera os pontos de SORTE e acrescenta 1 ponto à sua SORTE
+			Inicial.
+			Estas poções podem ser tomadas a qualquer momento durante a sua aventura. Tomar uma dose da
+			poção recuperará os seus índices de HABILIDADE, ENERGIA ou SORTE, restabelecendo o nível
+			Inicial (e a Poção da Fortuna acrescentará 1 ponto a seu índice de SORTE Inicial antes de
+			recuperar a SORTE).
+			Cada garrafa de poção contém o suficiente para duas doses, isto é, a capacidade pode ser recuperada
+			até duas vezes durante uma aventura. Anote na sua Folha de Aventuras cada vez que ela for usada.
+			Lembre-se também de que você só pode escolher uma das três poções para levar em sua viagem,
+			por isso escolha com inteligência!

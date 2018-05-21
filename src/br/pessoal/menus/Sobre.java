@@ -21,6 +21,7 @@ public class Sobre {
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 			opcaoEscolhidaAUX = scanner.nextLine();
+			utils.transicao(10);
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				
@@ -34,15 +35,6 @@ public class Sobre {
 					utils.transicao(20);
 					escolhaFeita = true;
 					break;
-
-				case 2:
-					utils.transicao(30);
-					utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.final"));
-					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.sair.mensagem"));
-					utils.transicao(10);
-					System.exit(0);
-					break;
-
 
 				default:
 					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));

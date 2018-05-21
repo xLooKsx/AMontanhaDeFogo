@@ -27,6 +27,7 @@ public class Menu {
 			do {
 				System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 				opcaoEscolhidaAUX = scanner.nextLine();
+				utils.transicao(10);
 
 				if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 					

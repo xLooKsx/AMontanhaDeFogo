@@ -126,6 +126,7 @@ public class Utils {
 				}
 				lerArq.close();
 				arquivos[index] = conteudo.toString();
+				index++;
 				conteudo.delete(0, conteudo.length());
 			}
 		} catch (FileNotFoundException e) {

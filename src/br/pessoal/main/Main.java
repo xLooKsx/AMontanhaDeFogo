@@ -10,7 +10,7 @@ public class Main {
 		Menu menu = new Menu();
 		menu.telaInicial();
 		
-//		new Utils().desenharAsc("CARREGANDO *_*");
+//		new Utils().desenharAsc("Fim De Jogo ._.");
 	}
 
 }

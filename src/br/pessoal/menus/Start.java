@@ -1,5 +1,5 @@
 package br.pessoal.menus;
 
-public class OpcaoStart {
+public class Start {
 
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import br.pessoal.utils.Utils;
 
-public class OpcaoAjuda {
+public class Sobre {
 
 	private Scanner scanner = new Scanner(System.in);
 	
@@ -14,13 +14,14 @@ public class OpcaoAjuda {
 	private String opcaoEscolhidaAUX;
 	private boolean	escolhaFeita = false;
 	
-	public void telaAjuda() {
+	public void telaSobre() {
 		
-		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.ajuda"));
+		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.sobre"));
 		utils.transicao(10);
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 			opcaoEscolhidaAUX = scanner.nextLine();
+			utils.transicao(10);
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				
@@ -34,12 +35,6 @@ public class OpcaoAjuda {
 					utils.transicao(20);
 					escolhaFeita = true;
 					break;
-
-				case 2:
-					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.sair.mensagem"));					
-					escolhaFeita = true;
-					break;
-
 
 				default:
 					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));

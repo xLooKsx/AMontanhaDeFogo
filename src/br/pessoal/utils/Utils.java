@@ -16,8 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Utils {
-
-//	private static final Logger logger = Logger.getLogger(Utils.class.getName());
+	
 
 	public static void desenharAsc(String palavra) {
 
@@ -149,7 +148,11 @@ public class Utils {
 		return false;
 	}
 	
-	public void transicao(int espacamento) {
+	public int lancarDados() {
+		return (int)(Math.random() * 1+6);
+	}
+	
+	public void fazerTransicao(int espacamento) {
 
 		try {
 			for (int i = 0; i < espacamento; i++) {

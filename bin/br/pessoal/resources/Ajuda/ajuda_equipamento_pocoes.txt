@@ -1,4 +1,4 @@
-						EQUIPAMENTO E POÇÕES
+							EQUIPAMENTO E POÇÕES
 
 			Você começará a sua aventura com um mínimo essencial de equipamento, mas poderá incluir
 			outros itens durante a sua viagem. Você está armado com uma espada e vestido com uma armadura
@@ -19,3 +19,7 @@
 			até duas vezes durante uma aventura. Anote na sua Folha de Aventuras cada vez que ela for usada.
 			Lembre-se também de que você só pode escolher uma das três poções para levar em sua viagem,
 			por isso escolha com inteligência!
+			
+						Pressione 1 para Voltar ao Menu
+						Pressione 2 para Proxima Pagina						
+						Pressione 3 para Pagina Anterior

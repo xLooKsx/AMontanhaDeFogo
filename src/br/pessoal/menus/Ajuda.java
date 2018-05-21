@@ -1,7 +1,5 @@
 package br.pessoal.menus;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import br.pessoal.utils.Utils;
@@ -37,14 +35,14 @@ public class Ajuda {
 	
 	public void telaAjuda() {				
 		
-		utils.transicao(10);
+		utils.fazerTransicao(10);
 		System.out.println(arquivosAjuda[pgAtual]);
-		utils.transicao(10);
+		utils.fazerTransicao(10);
 		
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 			opcaoEscolhidaAUX = scanner.nextLine();
-			utils.transicao(10);
+			utils.fazerTransicao(10);
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				
@@ -53,9 +51,9 @@ public class Ajuda {
 				case 1:
 					Menu menu = new Menu();
 					utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-					utils.transicao(20);
+					utils.fazerTransicao(20);
 					menu.telaInicial();
-					utils.transicao(20);
+					utils.fazerTransicao(20);
 					escolhaFeita = true;
 					break;
 
@@ -69,15 +67,15 @@ public class Ajuda {
 
 
 				default:
-					utils.transicao(20);			
+					utils.fazerTransicao(20);			
 					System.out.println(arquivosAjuda[pgAtual]);
-					utils.transicao(5);
+					utils.fazerTransicao(5);
 					break;
 				}
 			}else {
-				utils.transicao(20);			
+				utils.fazerTransicao(20);			
 				System.out.println(arquivosAjuda[pgAtual]);
-				utils.transicao(5);
+				utils.fazerTransicao(5);
 			}
 
 
@@ -89,17 +87,17 @@ public class Ajuda {
 
 		
 		if (pgAnterior > pgInicial -1) {
-			utils.transicao(20);			
+			utils.fazerTransicao(20);			
 			System.out.println(arquivosAjuda[pgAnterior]);
 			pgAnterior--;			
 			pgAtual--;
 			pgProxima--;
-			utils.transicao(5);
+			utils.fazerTransicao(5);
 			
 		}else {
-			utils.transicao(20);			
+			utils.fazerTransicao(20);			
 			System.out.println(arquivosAjuda[pgAtual]);
-			utils.transicao(5);
+			utils.fazerTransicao(5);
 		}
 		
 	}
@@ -108,17 +106,17 @@ public class Ajuda {
 		
 		
 		if (pgProxima < pgFinal + 1) {
-			utils.transicao(20);
+			utils.fazerTransicao(20);
 			System.out.println(arquivosAjuda[pgProxima]);
 			pgAnterior++;			
 			pgAtual++;
 			pgProxima++;
-			utils.transicao(5);
+			utils.fazerTransicao(5);
 			
 		}else {
-			utils.transicao(20);			
+			utils.fazerTransicao(20);			
 			System.out.println(arquivosAjuda[pgAtual]);
-			utils.transicao(5);
+			utils.fazerTransicao(5);
 		}
 		
 		

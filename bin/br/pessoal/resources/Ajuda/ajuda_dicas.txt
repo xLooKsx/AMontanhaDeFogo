@@ -1,4 +1,4 @@
-						DICAS PARA O JOGO
+							DICAS PARA O JOGO
 
 			Há apenas um caminho certo através da caverna do Feiticeiro, e você terá que fazer várias tentativas
 			até encontrá-lo. Tome notas e faça um mapa à medida em que você for explorando o caminho - esse
@@ -18,3 +18,7 @@
 			muito baixos nos dados jogados inicialmente, deve ser capaz de chegar ao final com razoável
 			facilidade.
 			Que a sorte dos deuses o acompanhe na aventura que o espera!
+			
+						Pressione 1 para Voltar ao Menu
+						Pressione 2 para Proxima Pagina						
+						Pressione 3 para Pagina Anterior

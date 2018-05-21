@@ -27,13 +27,14 @@ public class Menu {
 			do {
 				System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 				opcaoEscolhidaAUX = scanner.nextLine();
+				utils.transicao(10);
 
 				if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 					
 					opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
 					switch (opcaoEscolhida) {
 					case 1:
-						OpcaoStart opcaoStart = new OpcaoStart();
+						Start opcaoStart = new Start();
 						System.out.println("opcaoStart");
 						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
 						utils.transicao(20);
@@ -41,15 +42,26 @@ public class Menu {
 						break;
 
 					case 2:
-						OpcaoAjuda opcaoAjuda = new OpcaoAjuda();
+						Ajuda opcaoAjuda = new Ajuda();
 						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
 						utils.transicao(20);
 						opcaoAjuda.telaAjuda();
 						escolhaFeita = true;
 						break;
-
+						
 					case 3:
+						Sobre opcaoSobre = new Sobre();
+						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
+						utils.transicao(20);
+						opcaoSobre.telaSobre();
+						escolhaFeita = true;
+						break;
+
+					case 4:
+						utils.transicao(30);
+						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.final"));
 						System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.sair.mensagem"));
+						utils.transicao(10);
 						System.exit(0);
 						break;
 

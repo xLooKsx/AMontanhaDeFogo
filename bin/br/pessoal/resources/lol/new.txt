@@ -1,3 +1,0 @@
-nome: $nome
-aqui: $aqui
-lol: $lol

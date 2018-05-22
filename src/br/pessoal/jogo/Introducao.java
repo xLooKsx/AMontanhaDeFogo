@@ -19,11 +19,11 @@ public class Introducao {
 	public void telaInicio() {
 		
 		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.jogo.lore"));
-		utils.fazerTransicao(10);
+		utils.fazerTransicaoComDelay(10);
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 			opcaoEscolhidaAUX = scanner.nextLine();
-			utils.fazerTransicao(10);
+			utils.fazerTransicaoComDelay(10);
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				
@@ -32,15 +32,17 @@ public class Introducao {
 				case 1:
 					Menu menu = new Menu();
 					utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-					utils.fazerTransicao(20);
+					utils.fazerTransicaoComDelay(20);
 					menu.telaInicial();
-					utils.fazerTransicao(20);
+					utils.fazerTransicaoComDelay(20);
 					escolhaFeita = true;
 					break;
 					
 				case 2:
 					Jogo jogo = new Jogo();
-					
+					utils.fazerTransicaoComDelay(20);
+					jogo.criacaoPersonagem();
+					utils.fazerTransicaoComDelay(10);
 					escolhaFeita = true;
 					break;
 

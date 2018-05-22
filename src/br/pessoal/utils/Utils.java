@@ -152,7 +152,7 @@ public class Utils {
 		return (int)(Math.random() * 1+6);
 	}
 	
-	public void fazerTransicao(int espacamento) {
+	public void fazerTransicaoComDelay(int espacamento) {
 
 		try {
 			for (int i = 0; i < espacamento; i++) {
@@ -160,6 +160,17 @@ public class Utils {
 				Thread.sleep(200);
 			}
 		} catch (InterruptedException e) {
+			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, e);
+		}
+	}
+	
+	public void fazerTransicaoSemDelay(int espacamento) {
+
+		try {
+			for (int i = 0; i < espacamento; i++) {
+				System.out.println("");				
+			}
+		} catch (Exception e) {
 			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, e);
 		}
 	}

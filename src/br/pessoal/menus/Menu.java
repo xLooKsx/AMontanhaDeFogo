@@ -21,14 +21,14 @@ public class Menu {
 
 		try {
 			
-			utils.fazerTransicao(10);
+			utils.fazerTransicaoComDelay(10);
 			utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.menu"));
-			utils.fazerTransicao(10);
+			utils.fazerTransicaoComDelay(10);
 
 			do {
 				System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 				opcaoEscolhidaAUX = scanner.nextLine();
-				utils.fazerTransicao(10);
+				utils.fazerTransicaoComDelay(10);
 
 				if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 					
@@ -37,7 +37,7 @@ public class Menu {
 					case 1:
 						Introducao opcaoStart = new Introducao();						
 						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-						utils.fazerTransicao(20);
+						utils.fazerTransicaoComDelay(20);
 						opcaoStart.telaInicio();
 						escolhaFeita = true;
 						break;
@@ -45,7 +45,7 @@ public class Menu {
 					case 2:
 						Ajuda opcaoAjuda = new Ajuda();
 						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-						utils.fazerTransicao(20);
+						utils.fazerTransicaoComDelay(20);
 						opcaoAjuda.telaAjuda();
 						escolhaFeita = true;
 						break;
@@ -53,16 +53,16 @@ public class Menu {
 					case 3:
 						Sobre opcaoSobre = new Sobre();
 						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-						utils.fazerTransicao(20);
+						utils.fazerTransicaoComDelay(20);
 						opcaoSobre.telaSobre();
 						escolhaFeita = true;
 						break;
 
 					case 4:
-						utils.fazerTransicao(30);
+						utils.fazerTransicaoComDelay(30);
 						utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.final"));
 						System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.sair.mensagem"));
-						utils.fazerTransicao(10);
+						utils.fazerTransicaoComDelay(10);
 						System.exit(0);
 						break;
 

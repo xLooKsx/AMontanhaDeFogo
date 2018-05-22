@@ -17,11 +17,11 @@ public class Sobre {
 	public void telaSobre() {
 		
 		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.sobre"));
-		utils.fazerTransicao(10);
+		utils.fazerTransicaoComDelay(10);
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 			opcaoEscolhidaAUX = scanner.nextLine();
-			utils.fazerTransicao(10);
+			utils.fazerTransicaoComDelay(10);
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				
@@ -30,9 +30,9 @@ public class Sobre {
 				case 1:
 					Menu menu = new Menu();
 					utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-					utils.fazerTransicao(20);
+					utils.fazerTransicaoComDelay(20);
 					menu.telaInicial();
-					utils.fazerTransicao(20);
+					utils.fazerTransicaoComDelay(20);
 					escolhaFeita = true;
 					break;
 

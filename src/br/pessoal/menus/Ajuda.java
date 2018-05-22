@@ -35,14 +35,14 @@ public class Ajuda {
 	
 	public void telaAjuda() {				
 		
-		utils.fazerTransicao(10);
+		utils.fazerTransicaoComDelay(10);
 		System.out.println(arquivosAjuda[pgAtual]);
-		utils.fazerTransicao(10);
+		utils.fazerTransicaoComDelay(10);
 		
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
 			opcaoEscolhidaAUX = scanner.nextLine();
-			utils.fazerTransicao(10);
+			utils.fazerTransicaoComDelay(10);
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				
@@ -51,9 +51,9 @@ public class Ajuda {
 				case 1:
 					Menu menu = new Menu();
 					utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.mensagem.carregando"));						
-					utils.fazerTransicao(20);
+					utils.fazerTransicaoComDelay(20);
 					menu.telaInicial();
-					utils.fazerTransicao(20);
+					utils.fazerTransicaoComDelay(20);
 					escolhaFeita = true;
 					break;
 
@@ -67,15 +67,15 @@ public class Ajuda {
 
 
 				default:
-					utils.fazerTransicao(20);			
+					utils.fazerTransicaoComDelay(20);			
 					System.out.println(arquivosAjuda[pgAtual]);
-					utils.fazerTransicao(5);
+					utils.fazerTransicaoComDelay(5);
 					break;
 				}
 			}else {
-				utils.fazerTransicao(20);			
+				utils.fazerTransicaoComDelay(20);			
 				System.out.println(arquivosAjuda[pgAtual]);
-				utils.fazerTransicao(5);
+				utils.fazerTransicaoComDelay(5);
 			}
 
 
@@ -87,17 +87,17 @@ public class Ajuda {
 
 		
 		if (pgAnterior > pgInicial -1) {
-			utils.fazerTransicao(20);			
+			utils.fazerTransicaoComDelay(20);			
 			System.out.println(arquivosAjuda[pgAnterior]);
 			pgAnterior--;			
 			pgAtual--;
 			pgProxima--;
-			utils.fazerTransicao(5);
+			utils.fazerTransicaoComDelay(5);
 			
 		}else {
-			utils.fazerTransicao(20);			
+			utils.fazerTransicaoComDelay(20);			
 			System.out.println(arquivosAjuda[pgAtual]);
-			utils.fazerTransicao(5);
+			utils.fazerTransicaoComDelay(5);
 		}
 		
 	}
@@ -106,17 +106,17 @@ public class Ajuda {
 		
 		
 		if (pgProxima < pgFinal + 1) {
-			utils.fazerTransicao(20);
+			utils.fazerTransicaoComDelay(20);
 			System.out.println(arquivosAjuda[pgProxima]);
 			pgAnterior++;			
 			pgAtual++;
 			pgProxima++;
-			utils.fazerTransicao(5);
+			utils.fazerTransicaoComDelay(5);
 			
 		}else {
-			utils.fazerTransicao(20);			
+			utils.fazerTransicaoComDelay(20);			
 			System.out.println(arquivosAjuda[pgAtual]);
-			utils.fazerTransicao(5);
+			utils.fazerTransicaoComDelay(5);
 		}
 		
 		

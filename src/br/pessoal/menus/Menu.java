@@ -21,7 +21,7 @@ public class Menu {
 
 		try {
 			
-			utils.fazerTransicaoComDelay(10);
+			utils.fazerTransicaoComDelay(10);			
 			utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.menu"));
 			utils.fazerTransicaoComDelay(10);
 

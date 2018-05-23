@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -83,6 +87,52 @@ public class Utils {
 		return text;
 	}
 
+	public Map<String, List<Integer>> getItens(String arquivo) {
+
+		
+		Map<String, List<Integer>> registros = new HashMap<>();		 
+		try {
+		StringBuilder conteudo = new StringBuilder();
+		FileReader arq = new FileReader(arquivo);
+		BufferedReader lerArq = new BufferedReader(arq);
+		String linha = lerArq.readLine();
+		
+			while (linha != null) {
+				
+				String nome = linha.substring(0, linha.indexOf('-'));
+				List<Integer> atributos = adicionarAtributo(linha.indexOf('-')+1, linha);
+
+				registros.put(nome, atributos);
+				linha = lerArq.readLine();
+			}
+			arq.close();
+			System.out.println(conteudo.toString());
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		return registros;
+	}
+
+	
+	private List<Integer> adicionarAtributo(int index, String linha) {
+
+		List<Integer> atributos = new ArrayList<>();
+		String atributoAux;
+		int indexAux = linha.lastIndexOf('-');
+		
+		atributoAux = linha.substring(linha.indexOf('-'), linha.indexOf('-')+1);
+		atributos.add(Integer.parseInt(atributoAux));
+		
+		atributoAux = linha.substring(indexAux);
+		atributos.add(Integer.parseInt(atributoAux));
+			
+		
+		return atributos;
+	}
+
 	public void lerArquivo(String arquivo) {
 
 		try {
@@ -148,8 +198,8 @@ public class Utils {
 		return false;
 	}
 	
-	public int lancarDados() {
-		return (int)(Math.random() * 1+6);
+	public int getValorDado() {
+		return (int)(Math.random() * 6)+1;
 	}
 	
 	public void fazerTransicaoComDelay(int espacamento) {

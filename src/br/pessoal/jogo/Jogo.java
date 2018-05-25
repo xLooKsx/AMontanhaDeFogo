@@ -25,6 +25,7 @@ public class Jogo implements Status{
 	private Utils utils = new Utils();		
 	
 	private Map<String, List<Integer>> itens = new HashMap<>();
+	private Map<String, List<Integer>> pocoes = new HashMap<>();
 
 	
 	
@@ -33,8 +34,10 @@ public class Jogo implements Status{
 		itens = utils.getItens("jogo/itens.txt");
 		for (String itemDaVez : itens.keySet()) {
 			System.out.println("Nome do Item: "+itemDaVez);
-			System.out.println("Habilidade adicional do Item: "+itens.get(itemDaVez).get(0));
-			System.out.println("dano adicional do Item: "+itens.get(itemDaVez).get(1));
+			System.out.println("DANO: "+itens.get(itemDaVez).get(0));
+			System.out.println("ENERGIA: "+itens.get(itemDaVez).get(1));
+			System.out.println("HABILIDADE: "+itens.get(itemDaVez).get(2));
+			System.out.println("ESPECIAL: "+itens.get(itemDaVez).get(3));
 		}
 	}
 
@@ -43,8 +46,11 @@ public class Jogo implements Status{
 	public void criacaoPersonagem() {
 
 		JogadorTO jogadorTO = new JogadorTO();
-		jogadorTO.addEquipamento(utils.getMessageProperty("br.pessoal.jogo.nome.itens.espada"));
-		jogadorTO.addEquipamento(utils.getMessageProperty("br.pessoal.jogo.nome.itens.escudo"));		
+		jogadorTO.setQtdProvicoes(10);
+		jogadorTO.addEquipamento("ESPADA");
+		jogadorTO.addEquipamento("ESCUDO");		
+		jogadorTO.addEquipamento("ARMADURA DE COURO");	
+		jogadorTO.addEquipamento("LANTERNA");	
 		
 		preencherInterface(jogadorTO);
 		utils.fazerTransicaoComDelay(10);

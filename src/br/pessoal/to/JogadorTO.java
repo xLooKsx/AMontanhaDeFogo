@@ -180,9 +180,12 @@ public class JogadorTO {
 
 	@Override
 	public String toString() {
-		return "JogadorTO [nome=" + nome + ", habilidade=" + habilidade + ", energia=" + energia + ", sorte=" + sorte
-				+ ", qtdProvicoes=" + qtdProvicoes + ", ouro=" + ouro + ", equipamentos=" + equipamentos + ", joias="
-				+ joias + ", pocoes=" + pocoes + ", bestiario=" + bestiario + "]";
+		return "JogadorTO [nome=" + nome + ", habilidade=" + habilidade + ", habilidadeInicial=" + habilidadeInicial
+				+ ", energia=" + energia + ", energiaInicial=" + energiaInicial + ", sorte=" + sorte + ", sorteInicial="
+				+ sorteInicial + ", qtdProvicoes=" + qtdProvicoes + ", ouro=" + ouro + ", equipamentos=" + equipamentos
+				+ ", joias=" + joias + ", pocoes=" + pocoes + ", bestiario=" + bestiario + "]";
 	}
+
+	
 
 }

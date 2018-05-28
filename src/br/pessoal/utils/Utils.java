@@ -120,9 +120,10 @@ public class Utils {
 
 	/*
 	 * A sequencia dos atributos são:
-	 * 1º DANO
-	 * 2º ENERGIA
-	 * 3º HABILIDADE
+	 * 	ARMAS			POCOES
+	 * 1º DANO			HABILIDADE
+	 * 2º ENERGIA		ENERGIA
+	 * 3º HABILIDADE	SORTE
 	 * 4º PERMITE QUE OS STATUS INICIAIS AUMENTEM
 	 */
 	private List<Integer> adicionarAtributo(String linha) {

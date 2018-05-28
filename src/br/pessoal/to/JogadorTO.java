@@ -16,22 +16,21 @@ public class JogadorTO {
 	private int qtdProvicoes;
 	private int ouro;
 
-	private List<String> equipamentos = new ArrayList<>();
-	private List<String> joias = new ArrayList<>();
-	private List<String> pocoes = new ArrayList<>();
+	private List<String> inventario = new ArrayList<>();
+	private List<ArmaTO> equipamentos = new ArrayList<>();
+	private List<JoiaTO> joias = new ArrayList<>();
+	private List<PocoesTO> pocoes = new ArrayList<>();
 	private List<InimigoTO> bestiario = new ArrayList<>();
-
-
 	
-
+	
 	public JogadorTO() {
-		this("", 0, 0, 0, 0, 0, 0, 0, 0, null, null, null);
+		this("", 0, 0, 0, 0, 0, 0, 0, 0);
 	}
 
+	
 	public JogadorTO(String nome, int habilidade, int habilidadeInicial, int energia, int energiaInicial, int sorte,
-			int sorteInicial, int qtdProvicoes, int ouro, List<String> joias, List<String> pocoes,
-			List<InimigoTO> bestiario) {
-		super();
+			int sorteInicial, int qtdProvicoes, int ouro) {
+		
 		this.nome = nome;
 		this.habilidade = habilidade;
 		this.habilidadeInicial = habilidadeInicial;
@@ -40,126 +39,161 @@ public class JogadorTO {
 		this.sorte = sorte;
 		this.sorteInicial = sorteInicial;
 		this.qtdProvicoes = qtdProvicoes;
-		this.ouro = ouro;
-		this.joias = joias;
-		this.pocoes = pocoes;
-		this.bestiario = bestiario;
+		this.ouro = ouro;		
 	}
 
+	
+	
 	public String getNome() {
 		return nome;
 	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+
 	public int getHabilidade() {
 		return habilidade;
 	}
+
 
 	public void setHabilidade(int habilidade) {
 		this.habilidade = habilidade;
 	}
 
+
 	public int getHabilidadeInicial() {
 		return habilidadeInicial;
 	}
+
 
 	public void setHabilidadeInicial(int habilidadeInicial) {
 		this.habilidadeInicial = habilidadeInicial;
 	}
 
+
 	public int getEnergia() {
 		return energia;
 	}
+
 
 	public void setEnergia(int energia) {
 		this.energia = energia;
 	}
 
+
 	public int getEnergiaInicial() {
 		return energiaInicial;
 	}
+
 
 	public void setEnergiaInicial(int energiaInicial) {
 		this.energiaInicial = energiaInicial;
 	}
 
+
 	public int getSorte() {
 		return sorte;
 	}
+
 
 	public void setSorte(int sorte) {
 		this.sorte = sorte;
 	}
 
+
 	public int getSorteInicial() {
 		return sorteInicial;
 	}
+
 
 	public void setSorteInicial(int sorteInicial) {
 		this.sorteInicial = sorteInicial;
 	}
 
+
 	public int getQtdProvicoes() {
 		return qtdProvicoes;
 	}
+
 
 	public void setQtdProvicoes(int qtdProvicoes) {
 		this.qtdProvicoes = qtdProvicoes;
 	}
 
+
 	public int getOuro() {
 		return ouro;
 	}
+
 
 	public void setOuro(int ouro) {
 		this.ouro = ouro;
 	}
 
-	public List<String> getEquipamentos() {
+
+	public List<String> getInventario() {
+		return inventario;
+	}
+
+
+	public void setInventario(List<String> inventario) {
+		this.inventario = inventario;
+	}
+
+
+	public List<ArmaTO> getEquipamentos() {
 		return equipamentos;
 	}
 
-	public void setEquipamentos(List<String> equipamentos) {
+
+	public void setEquipamentos(List<ArmaTO> equipamentos) {
 		this.equipamentos = equipamentos;
 	}
 
-	public List<String> getJoias() {
+
+	public List<JoiaTO> getJoias() {
 		return joias;
 	}
 
-	public void setJoias(List<String> joias) {
+
+	public void setJoias(List<JoiaTO> joias) {
 		this.joias = joias;
 	}
 
-	public List<String> getPocoes() {
+
+	public List<PocoesTO> getPocoes() {
 		return pocoes;
 	}
 
-	public void setPocoes(List<String> pocoes) {
+
+	public void setPocoes(List<PocoesTO> pocoes) {
 		this.pocoes = pocoes;
 	}
+
 
 	public List<InimigoTO> getBestiario() {
 		return bestiario;
 	}
 
+
 	public void setBestiario(List<InimigoTO> bestiario) {
 		this.bestiario = bestiario;
 	}
-	
-	public void addEquipamento(String equipamento) {
-		this.equipamentos.add(equipamento);
+
+
+	public void addInventario(String equipamento) {
+		this.inventario.add(equipamento);
 	}
 
-	public String listarEquipamentos() {
+	public String listarInventario() {
 
 		StringBuilder builder = new StringBuilder();
 
 		if (!this.equipamentos.isEmpty()) {
-			for (String equipamentoDaVez : equipamentos) {
+			for (String equipamentoDaVez : inventario) {
 				builder.append("- "+equipamentoDaVez);
 			}
 		}else {
@@ -170,7 +204,7 @@ public class JogadorTO {
 	}
 
 	public void removeEquipamento(String equipamento) {
-		for (String equipamentoDaVez : equipamentos) {
+		for (String equipamentoDaVez : inventario) {
 			if (equipamentoDaVez.equals(equipamento)) {
 				this.equipamentos.remove(equipamentoDaVez);
 				break;

@@ -13,7 +13,7 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
-
+import br.pessoal.menus.Menu;
 import br.pessoal.to.JogadorTO;
 import br.pessoal.utils.Utils;
 import br.pessoal.utils.Status;
@@ -21,8 +21,12 @@ import br.pessoal.utils.Status;
 public class Jogo implements Status{
 
 	private Scanner scanner = new Scanner(System.in);
-
+	private JogadorTO jogadorTO;
 	private Utils utils = new Utils();		
+	
+	private int opcaoEscolhida;
+	private String opcaoEscolhidaAUX;
+	private boolean	escolhaFeita = false;
 	
 	private Map<String, List<Integer>> itens = new HashMap<>();
 	private Map<String, List<Integer>> pocoes = new HashMap<>();
@@ -45,12 +49,12 @@ public class Jogo implements Status{
 
 	public void criacaoPersonagem() {
 
-		JogadorTO jogadorTO = new JogadorTO();
+		jogadorTO = new JogadorTO();
 		jogadorTO.setQtdProvicoes(10);
-		jogadorTO.addEquipamento("ESPADA");
-		jogadorTO.addEquipamento("ESCUDO");		
-		jogadorTO.addEquipamento("ARMADURA DE COURO");	
-		jogadorTO.addEquipamento("LANTERNA");	
+		jogadorTO.addInventario("ESPADA");
+		jogadorTO.addInventario("ESCUDO");		
+		jogadorTO.addInventario("ARMADURA DE COURO");	
+		jogadorTO.addInventario("LANTERNA");	
 		
 		preencherInterface(jogadorTO);
 		utils.fazerTransicaoComDelay(10);
@@ -81,8 +85,42 @@ public class Jogo implements Status{
 		jogadorTO.setSorte(jogadorTO.getSorteInicial());		
 		atualizarDados(jogadorTO);
 		
+		do {
+			System.out.println("PRESSIONE 1 PARA CONTINUAR \n2 PARA CRIAR O PERSONAGEM NOVAMENTE \n3 PARA VOLTAR AO MENU ");
+			opcaoEscolhidaAUX = scanner.nextLine();
+			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
+				opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
+				switch (opcaoEscolhida) {
+				case 1:
+					escolherPocao();
+					atualizarDados(jogadorTO);
+					escolhaFeita = true;
+					break;
+					
+				case 2:
+					criacaoPersonagem();
+					escolhaFeita = true;
+					break;
+				
+				case 3:
+					Menu menu = new Menu();
+					menu.telaInicial();
+					escolhaFeita = true;
+					break;
+					
+				default:
+					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
+					escolhaFeita = true;
+					break;
+				}
+			}else {
+				System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
+			}
+		} while (!escolhaFeita);
+		
 	}
 	
+	public void escolherPocao() {}
 	
 	
 	@Override

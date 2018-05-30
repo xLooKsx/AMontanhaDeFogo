@@ -10,14 +10,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Utils {
+import br.pessoal.to.JogadorTO;
 
-//	private static final Logger logger = Logger.getLogger(Utils.class.getName());
+public class Utils {
+	
 
 	public static void desenharAsc(String palavra) {
 
@@ -84,6 +89,74 @@ public class Utils {
 		return text;
 	}
 
+	public Map<String, List<Integer>> getItens(String arquivo) {
+
+		
+		Map<String, List<Integer>> registros = new HashMap<>();		 
+		try {
+		StringBuilder conteudo = new StringBuilder();
+		FileReader arq = new FileReader(arquivo);
+		BufferedReader lerArq = new BufferedReader(arq);
+		String linha = lerArq.readLine();
+		
+			while (linha != null) {
+				
+				String nome = linha.substring(0, linha.indexOf('-')).replaceAll("_", " ");
+				List<Integer> atributos = adicionarAtributo(linha);
+
+				registros.put(nome, atributos);
+				linha = lerArq.readLine();
+			}
+			arq.close();
+			System.out.println(conteudo.toString());
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		return registros;
+	}
+
+	/*
+	 * A sequencia dos atributos são:
+	 * 	ARMAS			POCOES
+	 * 1º DANO			HABILIDADE
+	 * 2º ENERGIA		ENERGIA
+	 * 3º HABILIDADE	SORTE
+	 * 4º PERMITE QUE OS STATUS INICIAIS AUMENTEM
+	 */
+	private List<Integer> adicionarAtributo(String linha) {
+
+		List<Integer> atributos = new ArrayList<>();
+		String atributoAux;
+		int indexAux = linha.lastIndexOf('-');
+		
+		//DANO
+		int posInicial = indexAux-2;		
+		int posFinal = indexAux;				
+		atributoAux = linha.substring(posInicial, posFinal);
+		atributos.add(Integer.parseInt(atributoAux));
+		
+		//ENERGIA
+		posInicial = indexAux+1;		
+		posFinal = linha.lastIndexOf(':');	
+		atributoAux = linha.substring(posInicial, posFinal);
+		atributos.add(Integer.parseInt(atributoAux));
+		
+		//HABILIDADE
+		posInicial = indexAux-5;		
+		posFinal = posInicial+2;
+		atributoAux = linha.substring(posInicial, posFinal);
+		atributos.add(Integer.parseInt(atributoAux));
+			
+		//CAMPO ESPECIAL
+		atributoAux = linha.substring(linha.lastIndexOf(':')+1);
+		atributos.add(Integer.parseInt(atributoAux));
+		
+		return atributos;
+	}
+
 	public void lerArquivo(String arquivo) {
 
 		try {
@@ -139,6 +212,55 @@ public class Utils {
 		
 		return arquivos;
 	}
+	
+	public void usarProvicao(JogadorTO jogadorTO) {
+		
+		int transbordo = 0;
+		
+		if (jogadorTO.getQtdProvicoes() > 0 && jogadorTO.getEnergia() < jogadorTO.getEnergiaInicial()) {
+			
+			jogadorTO.setQtdProvicoes(jogadorTO.getQtdProvicoes()-1);			
+			jogadorTO.setEnergia(jogadorTO.getEnergia() +4);
+			transbordo = jogadorTO.getEnergiaInicial() - jogadorTO.getEnergia();			
+			
+			if (transbordo < 0) {
+				jogadorTO.setEnergia(jogadorTO.getEnergia() + (transbordo));
+			}
+			
+		}			
+	}
+	
+	public void restaurarSorte(JogadorTO jogadorTO, int VlrAumento) {
+		
+		int transbordo = 0;
+		
+		if (jogadorTO.getSorte() < jogadorTO.getSorteInicial()) {
+								
+			jogadorTO.setSorte(jogadorTO.getSorte() + VlrAumento);
+			transbordo = jogadorTO.getSorteInicial() - jogadorTO.getSorte();			
+			
+			if (transbordo < 0) {
+				jogadorTO.setSorte(jogadorTO.getSorte() + (transbordo));
+			}
+			
+		}			
+	}
+	
+	public void restaurarEnergia(JogadorTO jogadorTO, int VlrAumento) {
+		
+		int transbordo = 0;
+		
+		if (jogadorTO.getEnergia() < jogadorTO.getEnergiaInicial()) {
+								
+			jogadorTO.setEnergia(jogadorTO.getEnergia() + VlrAumento);
+			transbordo = jogadorTO.getEnergiaInicial() - jogadorTO.getEnergia();			
+			
+			if (transbordo < 0) {
+				jogadorTO.setEnergia(jogadorTO.getEnergia() + (transbordo));
+			}
+			
+		}			
+	}
 
 	public boolean inputIsNumber(String input){
 		
@@ -149,7 +271,11 @@ public class Utils {
 		return false;
 	}
 	
-	public void transicao(int espacamento) {
+	public int getValorDado() {
+		return (int)(Math.random() * 6)+1;
+	}
+	
+	public void fazerTransicaoComDelay(int espacamento) {
 
 		try {
 			for (int i = 0; i < espacamento; i++) {
@@ -157,6 +283,17 @@ public class Utils {
 				Thread.sleep(200);
 			}
 		} catch (InterruptedException e) {
+			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, e);
+		}
+	}
+	
+	public void fazerTransicaoSemDelay(int espacamento) {
+
+		try {
+			for (int i = 0; i < espacamento; i++) {
+				System.out.println("");				
+			}
+		} catch (Exception e) {
 			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, e);
 		}
 	}

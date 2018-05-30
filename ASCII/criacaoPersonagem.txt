@@ -1,0 +1,30 @@
+					   // \\
+					  //   \\
+					  \\   //
+					   \\ //
+					   (___)
+					   (___)
+					   (___)
+					   (___)
+				/\_____/\__/---\__/\_____/\
+				\/_____\/__ --- __\/_____\/
+					 \ __-__ /
+					  |\___/|
+					  [|\_/|]
+					  [|   |]
+					  [|   |]
+					  [|   |]
+					  [|   |]
+					  [|   |]		$lblNome $vlrNome
+					  [|   |]		$lblHabilidade $vlrHabilidade
+					  [|   |]		$lblEnergia $vlrEnergia
+					  [|   |]		$lblSorte $vlrSorte
+					  [|   |]		$lblQtdProvicoes $vlrQtdProv
+					  [|   |]		$lblOuro $vlrOuro
+					  [|   |]					|---------------LISTA DE ITENS---------------|
+#foreach($vlrDavez in $vlrListIntens)
+					  [|   |]						$vlrDavez
+#end
+					  \\   //
+					   \ | /
+					     V

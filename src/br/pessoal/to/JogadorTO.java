@@ -212,13 +212,17 @@ public class JogadorTO {
 		}
 	}
 
+
 	@Override
 	public String toString() {
 		return "JogadorTO [nome=" + nome + ", habilidade=" + habilidade + ", habilidadeInicial=" + habilidadeInicial
 				+ ", energia=" + energia + ", energiaInicial=" + energiaInicial + ", sorte=" + sorte + ", sorteInicial="
-				+ sorteInicial + ", qtdProvicoes=" + qtdProvicoes + ", ouro=" + ouro + ", equipamentos=" + equipamentos
-				+ ", joias=" + joias + ", pocoes=" + pocoes + ", bestiario=" + bestiario + "]";
+				+ sorteInicial + ", qtdProvicoes=" + qtdProvicoes + ", ouro=" + ouro + ", inventario=" + inventario
+				+ ", equipamentos=" + equipamentos + ", joias=" + joias + ", pocoes=" + pocoes + ", bestiario="
+				+ bestiario + "]";
 	}
+
+	
 
 	
 

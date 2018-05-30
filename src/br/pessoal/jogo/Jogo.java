@@ -22,6 +22,7 @@ public class Jogo implements Status{
 
 	private Scanner scanner = new Scanner(System.in);
 	private JogadorTO jogadorTO;
+	private Pocoes pocao = new Pocoes();
 	private Utils utils = new Utils();		
 	
 	private int opcaoEscolhida;
@@ -34,15 +35,7 @@ public class Jogo implements Status{
 	
 	
 	public Jogo() {
-				
-		itens = utils.getItens("jogo/itens.txt");
-		for (String itemDaVez : itens.keySet()) {
-			System.out.println("Nome do Item: "+itemDaVez);
-			System.out.println("DANO: "+itens.get(itemDaVez).get(0));
-			System.out.println("ENERGIA: "+itens.get(itemDaVez).get(1));
-			System.out.println("HABILIDADE: "+itens.get(itemDaVez).get(2));
-			System.out.println("ESPECIAL: "+itens.get(itemDaVez).get(3));
-		}
+	
 	}
 
 
@@ -86,18 +79,20 @@ public class Jogo implements Status{
 		atualizarDados(jogadorTO);
 		
 		do {
-			System.out.println("PRESSIONE 1 PARA CONTINUAR \n2 PARA CRIAR O PERSONAGEM NOVAMENTE \n3 PARA VOLTAR AO MENU ");
+			System.out.println(" PRESSIONE 1 PARA CONTINUAR \n PRESSIONE 2 PARA CRIAR O PERSONAGEM NOVAMENTE \n PRESSIONE 3 PARA VOLTAR AO MENU ");
 			opcaoEscolhidaAUX = scanner.nextLine();
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
 				switch (opcaoEscolhida) {
 				case 1:
-					escolherPocao();
-					atualizarDados(jogadorTO);
+					utils.fazerTransicaoSemDelay(20);	
+					pocao.escolherPocaoInicial(jogadorTO);
+					atualizarDados(jogadorTO);					
 					escolhaFeita = true;
 					break;
 					
 				case 2:
+					utils.fazerTransicaoComDelay(10);
 					criacaoPersonagem();
 					escolhaFeita = true;
 					break;
@@ -119,8 +114,6 @@ public class Jogo implements Status{
 		} while (!escolhaFeita);
 		
 	}
-	
-	public void escolherPocao() {}
 	
 	
 	@Override
@@ -160,7 +153,7 @@ public class Jogo implements Status{
 			context.put("vlrSorte", jogadorTO.getSorte());
 			context.put("vlrQtdProv", jogadorTO.getQtdProvicoes());
 			context.put("vlrOuro", jogadorTO.getOuro());
-			context.put("vlrListIntens", jogadorTO.getEquipamentos());
+			context.put("vlrListIntens", jogadorTO.getInventario());
 
 			Template t = ve.getTemplate(utils.getConfigProperty("br.pessoal.caminho.arquivo.jogo.criacao.personagem"));
 			

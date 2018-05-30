@@ -17,7 +17,7 @@ public class Pocoes implements Status{
 	
 	public void escolherPocaoInicial(JogadorTO jogadorTO) {
 		
-		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.jogo.lore"));
+		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.jogo.escolha.pocao"));
 		utils.fazerTransicaoComDelay(10);
 		do {
 			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
@@ -29,17 +29,17 @@ public class Pocoes implements Status{
 				opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
 				switch (opcaoEscolhida) {
 				case 1:
-					jogadorTO.addInventario("HABILIDADE");
+					jogadorTO.addInventario("P.HABILIDADE");
 					escolhaFeita = true;
 					break;
 					
 				case 2:
-					jogadorTO.addInventario("FORÇA");
+					jogadorTO.addInventario("P.FORÇA");
 					escolhaFeita = true;
 					break;
 					
 				case 3:
-					jogadorTO.addInventario("SORTE");
+					jogadorTO.addInventario("P.SORTE");
 					escolhaFeita = true;
 					break;
 

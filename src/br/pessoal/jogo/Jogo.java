@@ -2,7 +2,6 @@ package br.pessoal.jogo;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,10 +43,10 @@ public class Jogo implements Status{
 
 		jogadorTO = new JogadorTO();
 		jogadorTO.setQtdProvicoes(10);
-		jogadorTO.addInventario("ESPADA");
-		jogadorTO.addInventario("ESCUDO");		
-		jogadorTO.addInventario("ARMADURA DE COURO");	
-		jogadorTO.addInventario("LANTERNA");	
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.espada"));
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.escudo"));		
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.armadura.couro"));	
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.lanterna"));	
 		
 		preencherInterface(jogadorTO);
 		utils.fazerTransicaoComDelay(10);
@@ -79,36 +78,43 @@ public class Jogo implements Status{
 		atualizarDados(jogadorTO);
 		
 		do {
-			System.out.println(" PRESSIONE 1 PARA CONTINUAR \n PRESSIONE 2 PARA CRIAR O PERSONAGEM NOVAMENTE \n PRESSIONE 3 PARA VOLTAR AO MENU ");
+			System.out.println(utils.getMessageProperty("br.pessoal.jogo.criacao.personagem.corfirmar.escolha"));
 			opcaoEscolhidaAUX = scanner.nextLine();
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
 				switch (opcaoEscolhida) {
 				case 1:
-					utils.fazerTransicaoSemDelay(20);	
-					pocao.escolherPocaoInicial(jogadorTO);
-					atualizarDados(jogadorTO);					
-					escolhaFeita = true;
+					try {
+						utils.fazerTransicaoSemDelay(20);
+						pocao.escolherPocaoInicial(jogadorTO);
+						atualizarDados(jogadorTO);
+						Thread.sleep(5000);
+						carregarLvl("001");
+						escolhaFeita = true;
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
-					
+
 				case 2:
 					utils.fazerTransicaoComDelay(10);
 					criacaoPersonagem();
 					escolhaFeita = true;
 					break;
-				
+
 				case 3:
 					Menu menu = new Menu();
 					menu.telaInicial();
 					escolhaFeita = true;
 					break;
-					
+
 				default:
 					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
 					escolhaFeita = true;
 					break;
 				}
-			}else {
+			} else {
 				System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
 			}
 		} while (!escolhaFeita);
@@ -187,6 +193,17 @@ public class Jogo implements Status{
 		return utils.getValorDado();
 	}
 
+	private void carregarLvl(String lvl) {
+		
+		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.lvl.jogo")+lvl+".txt");
+		carregarConfigLvl(lvl);
+	}
+	
+private void carregarConfigLvl(String lvl) {
+		
+		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.config.lvl.jogo")+lvl+".txt");
+	}
+	
 	@Override
 	public void usarSorte() {
 		// TODO Auto-generated method stub

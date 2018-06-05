@@ -297,4 +297,34 @@ public class Utils {
 			Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, e);
 		}
 	}
+	
+	public String[] carregarConfigLvl(String arquivo) {
+		
+		String[] config = new String[8];
+		int index = 0;
+		
+		try {			
+			FileReader arq = new FileReader(arquivo);
+			BufferedReader lerArq = new BufferedReader(arq);
+			String linha = lerArq.readLine();
+			
+				while (linha != null) {
+					
+					config[index] = linha.substring(0, 7);
+					index += 1;
+					config[index] = linha.substring(7);
+					index += 1;
+
+					linha = lerArq.readLine();
+				}
+				arq.close();
+				
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (IOException ex) {
+				Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		return config;
+	}
+
 }

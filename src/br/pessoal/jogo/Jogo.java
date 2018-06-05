@@ -12,7 +12,9 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import br.pessoal.menus.Ajuda;
 import br.pessoal.menus.Menu;
+import br.pessoal.menus.Sobre;
 import br.pessoal.to.JogadorTO;
 import br.pessoal.utils.Utils;
 import br.pessoal.utils.Status;
@@ -20,6 +22,10 @@ import br.pessoal.utils.Status;
 public class Jogo implements Status{
 
 	private Scanner scanner = new Scanner(System.in);
+	
+	private String[] configLvl = new String[8];
+	private StringBuilder mapa = new StringBuilder();
+	
 	private JogadorTO jogadorTO;
 	private Pocoes pocao = new Pocoes();
 	private Utils utils = new Utils();		
@@ -89,9 +95,11 @@ public class Jogo implements Status{
 						pocao.escolherPocaoInicial(jogadorTO);
 						atualizarDados(jogadorTO);
 						Thread.sleep(5000);
+						mapa.append("|   ");
+						mapa.append("\n");
 						carregarLvl("001");
 						escolhaFeita = true;
-					} catch (InterruptedException e) {
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -113,7 +121,7 @@ public class Jogo implements Status{
 					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
 					escolhaFeita = true;
 					break;
-				}
+				}				
 			} else {
 				System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
 			}
@@ -121,6 +129,29 @@ public class Jogo implements Status{
 		
 	}
 	
+	private void carregarFases() {
+		
+		do {
+			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
+			opcaoEscolhidaAUX = scanner.nextLine();
+			utils.fazerTransicaoComDelay(10);
+
+			if (configLvl[0].toString().contains(opcaoEscolhidaAUX) || configLvl[2].toString().contains(opcaoEscolhidaAUX)) {				
+				
+				if (configLvl[0].toString().contains(opcaoEscolhidaAUX)) {
+					
+					mapa.append(configLvl[3].toString());					
+				}else if (configLvl[2].toString().contains(opcaoEscolhidaAUX)) {
+					
+					mapa.append(configLvl[3].toString());
+				}				
+			}else {
+				System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
+			}
+
+
+		} while (!escolhaFeita);
+	}
 	
 	@Override
 	public void atualizarDados(JogadorTO jogadorTO) {
@@ -197,11 +228,16 @@ public class Jogo implements Status{
 		
 		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.lvl.jogo")+lvl+".txt");
 		carregarConfigLvl(lvl);
+		carregarFases();
 	}
 	
 private void carregarConfigLvl(String lvl) {
+				
+		configLvl = utils.carregarConfigLvl(utils.getConfigProperty("br.pessoal.caminho.arquivo.config.lvl.jogo")+lvl+".txt");
+		for (int i = 0; i < configLvl.length; i++) {
+			System.out.println(configLvl[i]);
+		}
 		
-		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.config.lvl.jogo")+lvl+".txt");
 	}
 	
 	@Override

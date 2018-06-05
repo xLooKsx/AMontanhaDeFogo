@@ -39,38 +39,38 @@ public class Batalha implements Status {
 
 			do {
 				// 1º passo
-				System.out.println("TURNO DO INIMIGO T^T");
+				System.out.println(utils.getMessageProperty("br.pessoal.jogo.batalha.turno.inimigo"));
 				vlrDado1 = utils.getValorDado();
 				vlrDado2 = utils.getValorDado();
 				vlrAtkInimigo = vlrDado1 + vlrDado2;
 				System.out.println(
-						"O INIMIGO " + inimigoTO.getNome() + " LANÇOU UM ATAQUE COM " + vlrAtkInimigo + " DE DANO !");
+						utils.getMessageProperty("br.pessoal.jogo.batalha.inimigo.label") + " " + inimigoTO.getNome() + utils.getMessageProperty("br.pessoal.jogo.batalha.lanca.ataque.label") + " " + vlrAtkInimigo + " " + utils.getMessageProperty("br.pessoal.jogo.batalha.de.dano.label"));
 
 				Thread.sleep(100);
 
 				// 2º passo
-				System.out.println("SEU TURNO *-*");
+				System.out.println(utils.getMessageProperty("br.pessoal.jogo.batalha.turno.jogador"));
 				vlrDado1 = lancarDados();
 				vlrDado2 = utils.getValorDado();
 				vlrAtkJogador = vlrDado1 + vlrDado2;
-				System.out.println("VOCÊ LANÇOU UM ATAQUE COM " + vlrAtkJogador + " DE DANO !");
+				System.out.println(utils.getMessageProperty("br.pessoal.jogo.batalha.jogador.lanca.ataque.label") + " " + vlrAtkJogador + " " + utils.getMessageProperty("br.pessoal.jogo.batalha.de.dano.label"));
 
 				// 3º passo
 				if (vlrAtkJogador > vlrAtkInimigo) {
 
-					System.out.println("PARABENS, VC CONSEGIU FERIR O INIMIGO \\O/");
-					escolherCritico("DAR UM CRITTICO");
+					System.out.println(utils.getMessageProperty("br.pessoal.jogo.batalha.causou.dano.label"));
+					escolherCritico(utils.getMessageProperty("br.pessoal.jogo.batalha.causar.critico.label"));
 					inimigoTO.setEnergia(inimigoTO.getEnergia() - danoCausado);
 
 				} else if (vlrAtkInimigo > vlrAtkJogador) {
 
-					System.out.println("DROGA.....O INIMIGO CONSEGUIU TE FERIR T^T");
-					escolherCritico("REDUZIR O DANO SOFRIDO");
+					System.out.println(utils.getMessageProperty("br.pessoal.jogo.batalha.receber.dano.label"));
+					escolherCritico(utils.getMessageProperty("br.pessoal.jogo.batalha.reduzir.dano.label"));
 					jogadorTO.setEnergia(jogadorTO.getEnergia() - danoSofrido);
 
 				} else {
 
-					System.out.println("A FORÇA DO ATAQUE DE VOCÊS DOIS FORAM IGUAI, VAMOS TENTAR NOVAMENTE...");
+					System.out.println(utils.getMessageProperty("br.pessoal.jogo.batalha.dano.igual.label"));
 				}
 
 			} while (inimigoTO.getEnergia() > 0);
@@ -84,7 +84,7 @@ public class Batalha implements Status {
 	private void escolherCritico(String mensagem) {
 
 		do {
-			System.out.print("VOCÊ DESEJA USAR A SORTE E " + mensagem + " ? \n APERTE 1 PARA SIM \n APERTE 2 PARA NÃO");
+			System.out.print(utils.getMessageProperty("br.pessoal.jogo.batalha.usar.dano.label") + " " + mensagem + " " + utils.getMessageProperty("br.pessoal.jogo.acao.escolher.sim.nao.label"));
 			opcaoEscolhidaAUX = scanner.nextLine();
 
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
@@ -92,10 +92,10 @@ public class Batalha implements Status {
 				opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
 				switch (opcaoEscolhida) {
 				case 1:
-
-					System.out.println("HORA DE LANÇAR O PRIMEIRO DADO.....");
+					
+					System.out.println(utils.getMessageProperty("br.pessoal.jogo.acao.lancar.primeiro.dado.label"));
 					vlrDado1 = lancarDados();
-					System.out.println("HORA DE LANÇAR O SEGUNDO DADO, BOA SORTE");
+					System.out.println(utils.getMessageProperty("br.pessoal.jogo.acao.lancar.segundo.dado.label"));
 					vlrDado2 = lancarDados();
 					totalSorte = vlrDado1 + vlrDado2;
 					usarSorte();

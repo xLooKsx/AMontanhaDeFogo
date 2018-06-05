@@ -2,7 +2,6 @@ package br.pessoal.jogo;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,9 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import br.pessoal.menus.Ajuda;
 import br.pessoal.menus.Menu;
+import br.pessoal.menus.Sobre;
 import br.pessoal.to.JogadorTO;
 import br.pessoal.utils.Utils;
 import br.pessoal.utils.Status;
@@ -21,6 +22,10 @@ import br.pessoal.utils.Status;
 public class Jogo implements Status{
 
 	private Scanner scanner = new Scanner(System.in);
+	
+	private String[] configLvl = new String[8];
+	private StringBuilder mapa = new StringBuilder();
+	
 	private JogadorTO jogadorTO;
 	private Pocoes pocao = new Pocoes();
 	private Utils utils = new Utils();		
@@ -44,10 +49,10 @@ public class Jogo implements Status{
 
 		jogadorTO = new JogadorTO();
 		jogadorTO.setQtdProvicoes(10);
-		jogadorTO.addInventario("ESPADA");
-		jogadorTO.addInventario("ESCUDO");		
-		jogadorTO.addInventario("ARMADURA DE COURO");	
-		jogadorTO.addInventario("LANTERNA");	
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.espada"));
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.escudo"));		
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.armadura.couro"));	
+		jogadorTO.addInventario(utils.getMessageProperty("br.pessoal.jogo.nome.itens.lanterna"));	
 		
 		preencherInterface(jogadorTO);
 		utils.fazerTransicaoComDelay(10);
@@ -79,42 +84,74 @@ public class Jogo implements Status{
 		atualizarDados(jogadorTO);
 		
 		do {
-			System.out.println(" PRESSIONE 1 PARA CONTINUAR \n PRESSIONE 2 PARA CRIAR O PERSONAGEM NOVAMENTE \n PRESSIONE 3 PARA VOLTAR AO MENU ");
+			System.out.println(utils.getMessageProperty("br.pessoal.jogo.criacao.personagem.corfirmar.escolha"));
 			opcaoEscolhidaAUX = scanner.nextLine();
 			if (utils.inputIsNumber(opcaoEscolhidaAUX)) {
 				opcaoEscolhida = Integer.parseInt(opcaoEscolhidaAUX);
 				switch (opcaoEscolhida) {
 				case 1:
-					utils.fazerTransicaoSemDelay(20);	
-					pocao.escolherPocaoInicial(jogadorTO);
-					atualizarDados(jogadorTO);					
-					escolhaFeita = true;
+					try {
+						utils.fazerTransicaoSemDelay(20);
+						pocao.escolherPocaoInicial(jogadorTO);
+						atualizarDados(jogadorTO);
+						Thread.sleep(5000);
+						mapa.append("|   ");
+						mapa.append("\n");
+						carregarLvl("001");
+						escolhaFeita = true;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
-					
+
 				case 2:
 					utils.fazerTransicaoComDelay(10);
 					criacaoPersonagem();
 					escolhaFeita = true;
 					break;
-				
+
 				case 3:
 					Menu menu = new Menu();
 					menu.telaInicial();
 					escolhaFeita = true;
 					break;
-					
+
 				default:
 					System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
 					escolhaFeita = true;
 					break;
-				}
-			}else {
+				}				
+			} else {
 				System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
 			}
 		} while (!escolhaFeita);
 		
 	}
 	
+	private void carregarFases() {
+		
+		do {
+			System.out.print(utils.getMessageProperty("br.pessoal.menu.opcao.desejada.mensagem.2P"));
+			opcaoEscolhidaAUX = scanner.nextLine();
+			utils.fazerTransicaoComDelay(10);
+
+			if (configLvl[0].toString().contains(opcaoEscolhidaAUX) || configLvl[2].toString().contains(opcaoEscolhidaAUX)) {				
+				
+				if (configLvl[0].toString().contains(opcaoEscolhidaAUX)) {
+					
+					mapa.append(configLvl[3].toString());					
+				}else if (configLvl[2].toString().contains(opcaoEscolhidaAUX)) {
+					
+					mapa.append(configLvl[3].toString());
+				}				
+			}else {
+				System.out.println(utils.getMessageProperty("br.pessoal.menu.opcao.invalida.mensagem"));
+			}
+
+
+		} while (!escolhaFeita);
+	}
 	
 	@Override
 	public void atualizarDados(JogadorTO jogadorTO) {
@@ -187,6 +224,22 @@ public class Jogo implements Status{
 		return utils.getValorDado();
 	}
 
+	private void carregarLvl(String lvl) {
+		
+		utils.lerArquivo(utils.getConfigProperty("br.pessoal.caminho.arquivo.lvl.jogo")+lvl+".txt");
+		carregarConfigLvl(lvl);
+		carregarFases();
+	}
+	
+private void carregarConfigLvl(String lvl) {
+				
+		configLvl = utils.carregarConfigLvl(utils.getConfigProperty("br.pessoal.caminho.arquivo.config.lvl.jogo")+lvl+".txt");
+		for (int i = 0; i < configLvl.length; i++) {
+			System.out.println(configLvl[i]);
+		}
+		
+	}
+	
 	@Override
 	public void usarSorte() {
 		// TODO Auto-generated method stub
